@@ -2,24 +2,22 @@
 
 ## users テーブル 　　　　　　　　　　#新規情報
 
-| Column               | Type   | Options                   |
-| ------------------   | ------ | ------------------------- |
-| nickname             | string | null: false               |
-| encrypted_password   | string | null: false               |
-| email                | string | null: false, unique: true |
-| name(last_name)      | string | null: false               |
-| name(first_name)     | string | null: false               |
-| name(last_name_kana) | string | null: false               |
-| name(first_name_kana)| string | null: false               |
-| birthday(year)       | string | null: false               |
-| birthday(month)      | string | null: false               |
-| birthday(day)        | string | null: false               |
+| Column              | Type   | Options                   |
+| ------------------  | ------ | ------------------------- |
+| nickname            | string | null: false               |
+| encrypted_password  | string | null: false               |
+| email               | string | null: false, unique: true |
+| name_last_name      | string | null: false               |
+| name_first_name     | string | null: false               |
+| name_last_name_kana | string | null: false               |
+| name_first_name_kana| string | null: false               |
+| birthday            | date   | null: false               |
 
 
 ### Association
 
 - has_many :items
-- belongs_to :kounyukiroku
+- belongs_to :order
 
 
 ## items テーブル　　　　　　　　　　#商品情報
@@ -27,23 +25,23 @@
 | Column             | Type      | Options                       |
 | ------------------ | --------- | ----------------------------- |
 | productname        | string    | null: false                   |
-| explanation        | string    | null: false                   |
-| category           | text      | null: false                   |
-| condition          | text      | null: false                   |
+| explanation        | text      | null: false                   |
+| category_id        | integer   | null: false                   |
+| condition_id       | integer   | null: false                   |
 | derivary_charge_id | integer   | null: false                   |
-| prefecture         | string    | null: false                   |
-| day                | datetime  | null: false                   |
-| selling_price_id   | integer   | null: false                   |
-| user               | references| null: false,foreign_key: true|
+| prefecture_id      | integer   | null: false                   |
+| day_id             | integer   | null: false                   |
+| selling_price      | integer   | null: false                   |
+| user               | references| null: false,foreign_key: true |
 
 
 ### Association
 
-- has_one :kounyukiroku
+- has_one :order
 - belongs_to :user
 
 
-## kounyukiroku テーブル　　　　　#購入記録
+## orders テーブル　　　　　#購入記録
 
 | Column             | Type       | Options                      |
 | ------------------ | ---------- | ---------------------------- |
@@ -55,15 +53,15 @@
 
 - has_one :user
 - belongs_to :item
-- has_one :sipping
+- has_one :address
 
 
-## sipping テーブル　　　#発送先情報
+## address テーブル　　　#発送先情報
 
 | Column             | Type      | Options                       |
 | ------------------ | --------- | ----------------------------- |
 | address            | string    | null: false                   |
-| prefecture         | string    | null: false                   |
+| prefecture_id      | string    | null: false                   |
 | city               | string    | null: false                   |
 | streetad           | string    | null: false                   |
 | building           | string    |                               |
@@ -74,7 +72,7 @@
 
 ### Association
 
-- bilongs_to :kounyukiroku
+- belongs_to :order
 
 
 
