@@ -17,7 +17,7 @@
 ### Association
 
 - has_many :items
-- belongs_to :order
+- has_many :orders
 
 
 ## items テーブル　　　　　　　　　　#商品情報
@@ -30,7 +30,7 @@
 | condition_id       | integer   | null: false                   |
 | derivary_charge_id | integer   | null: false                   |
 | prefecture_id      | integer   | null: false                   |
-| day_id             | integer   | null: false                   |
+| delivery_day_id    | integer   | null: false                   |
 | selling_price      | integer   | null: false                   |
 | user               | references| null: false,foreign_key: true |
 
@@ -51,22 +51,22 @@
 
 ### Association
 
-- has_one :user
+- belongs_to :user
 - belongs_to :item
 - has_one :address
 
 
-## address テーブル　　　#発送先情報
+## addresses テーブル　　　#発送先情報
 
 | Column             | Type      | Options                       |
 | ------------------ | --------- | ----------------------------- |
 | address            | string    | null: false                   |
-| prefecture_id      | string    | null: false                   |
+| prefecture_id      | integer   | null: false                   |
 | city               | string    | null: false                   |
 | streetad           | string    | null: false                   |
 | building           | string    |                               |
 | city               | string    | null: false                   |
-| kounyukiroku       | references| null: false,foreign_key: true |
+| order              | references| null: false,foreign_key: true |
 
 
 
