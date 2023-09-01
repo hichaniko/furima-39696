@@ -4,4 +4,6 @@ class ItemsController < ApplicationController
     # @items = Item.includes(:user)
   end
 
+  
+
 end
