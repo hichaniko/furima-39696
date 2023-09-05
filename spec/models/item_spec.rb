@@ -63,9 +63,27 @@ RSpec.describe Item, type: :model do
     end
 
     it 'selling_priceが空では登録できない' do
-      @item.selling_price = 1
+      @item.selling_price = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Selling price Out of setting range")
+      expect(@item.errors.full_messages).to include("Selling price is not a number")
+    end
+
+    it 'selling_priceに半角数字以外が含まれている場合は出品できない' do
+      @item.selling_price = "あいう"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Selling price is not a number")
+    end
+
+    it 'selling_priceが300円未満では出品できない' do
+      @item.selling_price = 200
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Selling price must be greater than or equal to 300")
+    end
+
+    it 'selling_priceが9_999_999円を超えると出品できない' do
+      @item.selling_price = 100_000_000
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Selling price must be less than or equal to 9999999")
     end
 
     it 'userが空では登録できない' do
