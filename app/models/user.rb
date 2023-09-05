@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :birthday, presence: true
  end
 
-  with_options presence: true, format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters."} do       ###バリテーション
+  with_options presence: true, format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters."} do
     # ひらがな、カタカナ、漢字のみ許可する
     validates :name_last_name
     validates :name_first_name
@@ -25,8 +25,5 @@ class User < ApplicationRecord
     VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
     validates_format_of :password, with:  VALID_PASSWORD_REGEX, message: 'は半角英数を両方含む必要があります'
     #　英数字混合必須
-
-   
-
-
+    
 end
