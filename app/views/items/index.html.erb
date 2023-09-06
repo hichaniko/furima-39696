@@ -130,7 +130,7 @@
 
       <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to "#" do %>  <%# //詳細ページの時に使う %>
+        <%= link_to item_path(item.id) do %>  <%# //詳細ページの時に使う %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
