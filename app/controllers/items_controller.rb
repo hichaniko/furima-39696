@@ -39,7 +39,10 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    item.destroy
+    if current_user == item.user  ## 出品者は削除できる
+      item.destroy
+    end 
+    
     redirect_to root_path
   end
 
