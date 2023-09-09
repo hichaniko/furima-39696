@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :address, :prefecture_id, :city, :streetad, :building, :phone_number
+  attr_accessor :user_id, :item_id, :address, :prefecture_id, :city, :streetad, :building, :phone_number, :token
 
 # バリデーション
   #郵便番号が必須　　
@@ -27,10 +27,9 @@ class OrderAddress
 
 # saveメソッド
 def save
-  # 寄付情報を保存し、変数donationに代入する
+  # 情報を保存し、変数orderに代入する
   order = Order.create(item_id: item_id, user_id: user_id)
   # 住所を保存する
-  # donation_idには、変数donationのidと指定する
   Address.create(address: address, prefecture_id: prefecture_id, city: city, streetad: streetad, building: building, phone_number: phone_number,order_id: order.id)
 end
  
