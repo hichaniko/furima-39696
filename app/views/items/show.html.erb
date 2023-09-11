@@ -26,8 +26,8 @@
     </div>
 
     
-    <% if user_signed_in? %>
-    <% if !@item.order.present? %>
+    <% if user_signed_in?%>
+    <% if @item.order == nil %>
     <% if current_user == @item.user %> 
       <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
