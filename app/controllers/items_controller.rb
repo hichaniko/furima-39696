@@ -24,7 +24,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user != @item.user  ## 出品者以外の人,トップページに遷移
+    if current_user == @item.user && !@item.order.present?
+    else
       redirect_to root_path
     end 
   end
@@ -39,7 +40,7 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    if current_user == item.user  ## 出品者は削除できる
+    if current_user == item.user  
       item.destroy
     end 
     

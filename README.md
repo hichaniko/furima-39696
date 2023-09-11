@@ -65,7 +65,7 @@
 | city               | string    | null: false                   |
 | streetad           | string    | null: false                   |
 | building           | string    |                               |
-| city               | string    | null: false                   |
+| phone_number       | string    | null: false                   |
 | order              | references| null: false,foreign_key: true |
 
 

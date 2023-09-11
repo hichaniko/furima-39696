@@ -26,4 +26,7 @@ class User < ApplicationRecord
     validates_format_of :password, with:  VALID_PASSWORD_REGEX, message: 'は半角英数を両方含む必要があります'
     #　英数字混合必須
     
+   has_many :items
+   has_many :orders
+   
 end
