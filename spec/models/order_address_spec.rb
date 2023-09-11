@@ -35,9 +35,9 @@ RSpec.describe OrderAddress, type: :model do
         end
 
         it'都道府県に「---」が選択されている場合は購入できない' do
-          @order_address.prefecture_id = ''
+          @order_address.prefecture_id = 0
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
+          expect(@order_address.errors.full_messages).to include("Prefecture must be other than 0")
         end
 
         it '市区町村が空では登録できない' do

@@ -12,7 +12,8 @@ with_options presence: true do
   validates :address, format: { with: /\A\d{3}-\d{4}\z/, message: "は無効な形式です。正しい形式は '123-4567' です。" }
   
   #都道府県が必須
-  validates :prefecture_id
+  validates :prefecture_id, numericality: { other_than: 0 } 
+
 
   #市区町村が必須
   validates :city
