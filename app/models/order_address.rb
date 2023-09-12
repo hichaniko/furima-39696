@@ -5,8 +5,6 @@ class OrderAddress
 
 # バリデーション
 with_options presence: true do
-  #郵便番号が必須　　
-  validates :address
 
   #郵便番号は、「3桁ハイフン4桁」の半角文字列のみ
   validates :address, format: { with: /\A\d{3}-\d{4}\z/, message: "は無効な形式です。正しい形式は '123-4567' です。" }
@@ -17,11 +15,10 @@ with_options presence: true do
 
   #市区町村が必須
   validates :city
+
   #番地が必須
   validates :streetad
 
-  #電話番号が必須
-  validates :phone_number
   #電話番号は、10桁以上11桁以内の半角数値のみ
   validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "は無効な形式です。10桁または11桁の半角数値を入力してください。" }
 
